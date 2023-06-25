@@ -55,3 +55,23 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Таблица всех расходов сотрудников
+DROP FUNCTION IF EXISTS staff_expenses();
+CREATE OR REPLACE FUNCTION staff_expenses()
+RETURNS TABLE
+(
+	staffer_id INT
+	,expense_date DATE
+	,amount DECIMAL
+)
+AS $$
+BEGIN
+	RETURN QUERY
+	SELECT
+		staff.id
+		,expenses.expense_date
+		,expenses.amount
+	FROM expenses, staff
+	WHERE expenses.staffer_id = staff.id;
+END;
+$$ LANGUAGE plpgsql;
