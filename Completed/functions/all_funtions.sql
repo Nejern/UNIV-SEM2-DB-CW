@@ -76,8 +76,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Оставшаяся не потраченная сумма отдела
-CREATE OR REPLACE FUNCTION department_remaining_amount(depart_id INT)
+-- Оставшаяся не потраченная сумма отдела в конкретной категории
+CREATE OR REPLACE FUNCTION department_remaining_amount(depart_id INT, type_id INT)
 RETURNS DECIMAL
 AS $$
 DECLARE
@@ -92,6 +92,7 @@ BEGIN
 			FROM departments_expense_types
 			WHERE
 				department_id = depart_id
+				AND expense_type_id = type_id
 				AND datestamp <= NOW()
 		), 0) -
 		COALESCE((
@@ -100,6 +101,7 @@ BEGIN
 			WHERE
 				staff.department_id = depart_id
 				AND expenses.staffer_id = staff.id
+				AND expense_type_id = type_id
 				AND expense_date <= NOW()
 		), 0) INTO remaining_amount;
 
