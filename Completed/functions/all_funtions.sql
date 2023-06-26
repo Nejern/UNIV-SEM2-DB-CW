@@ -86,6 +86,9 @@ BEGIN
 	IF NOT EXISTS (SELECT 1 FROM departments WHERE id = depart_id) THEN
 		RAISE EXCEPTION 'Department does not exist';
 	END IF;
+	IF NOT EXISTS (SELECT 1 FROM expense_types WHERE id = type_id) THEN
+		RAISE EXCEPTION 'Expense type does not exist';
+	END IF;
 	SELECT
 		COALESCE((
 			SELECT SUM(max_amount)
