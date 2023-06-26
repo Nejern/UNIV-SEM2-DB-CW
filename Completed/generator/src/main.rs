@@ -1,4 +1,4 @@
-use rand::{rngs::ThreadRng, Rng};
+use rand::Rng;
 
 const DEPARTMENTS: [&str; 3] = ["Разработка", "Маркейтинг", "Продажи"];
 const EXPENSE_TYPES: [[&str; 2]; 6] = [
@@ -41,7 +41,7 @@ fn gen_departments() {
     println!("INSERT INTO {title}");
     print!("(");
     for i in 0..types.len() {
-        print!("'{}'", types[i]);
+        print!("{}", types[i]);
         if i == types.len() - 1 {
             println!(") VALUES")
         } else {
@@ -61,9 +61,9 @@ fn gen_departments() {
             }
         }
         if i == DEPARTMENTS.len() - 1 {
-            println!("),")
-        } else {
             println!(");")
+        } else {
+            println!("),")
         }
     }
 }
@@ -74,7 +74,7 @@ fn gen_expense_types() {
     println!("INSERT INTO {title}");
     print!("(");
     for i in 0..types.len() {
-        print!("'{}'", types[i]);
+        print!("{}", types[i]);
         if i == types.len() - 1 {
             println!(") VALUES")
         } else {
@@ -112,7 +112,7 @@ fn gen_departments_expense_types() {
     println!("INSERT INTO {title}");
     print!("(");
     for i in 0..types.len() {
-        print!("'{}'", types[i]);
+        print!("{}", types[i]);
         if i == types.len() - 1 {
             println!(") VALUES")
         } else {
@@ -157,7 +157,7 @@ fn gen_staff() {
     println!("INSERT INTO {title}");
     print!("(");
     for i in 0..types.len() {
-        print!("'{}'", types[i]);
+        print!("{}", types[i]);
         if i == types.len() - 1 {
             println!(") VALUES")
         } else {
