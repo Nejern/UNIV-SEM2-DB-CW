@@ -35,11 +35,11 @@ CREATE TABLE IF NOT EXISTS expense_types
 DROP TABLE IF EXISTS departments_expense_types CASCADE;
 CREATE TABLE IF NOT EXISTS departments_expense_types
 (
-	id SERIAL PRIMARY KEY
-	,department_id INT REFERENCES departments (id) NOT NULL
+	department_id INT REFERENCES departments (id) NOT NULL
 	,expense_type_id INT REFERENCES expense_types (id) NOT NULL
 	,datestamp DATE NOT NULL
 	,max_amount DECIMAL NOT NULL
+  ,PRIMARY KEY (department_id, expense_type_id, datestamp)
 );
 
 -------------
