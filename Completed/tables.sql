@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS departments_expense_types
 	department_id INT REFERENCES departments (id) NOT NULL
 	,expense_type_id INT REFERENCES expense_types (id) NOT NULL
 	,datestamp DATE NOT NULL
-	,max_amount DECIMAL NOT NULL
+	,max_amount DECIMAL NOT NULL CHECK (max_amount >= 0)
   ,PRIMARY KEY (department_id, expense_type_id, datestamp)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS expenses
 	id SERIAL PRIMARY KEY
 	,expense_type_id INT REFERENCES expense_types (id) NOT NULL
 	,staffer_id INT REFERENCES staff (id) NOT NULL
-	,amount DECIMAL NOT NULL
+	,amount DECIMAL NOT NULL CHECK (amount >= 0)
 	,expense_date DATE NOT NULL
 );
 
