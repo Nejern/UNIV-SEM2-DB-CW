@@ -14,7 +14,7 @@ BEFORE INSERT OR UPDATE ON expenses
 FOR EACH ROW
 EXECUTE FUNCTION check_expense_date_trigger();
 
--- Проверка на покупательную способность при каждой покупке
+-- Проверка на покупательную способность при каждом расходе
 CREATE OR REPLACE FUNCTION check_pay_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
