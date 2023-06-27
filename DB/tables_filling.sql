@@ -48,7 +48,7 @@ INSERT INTO staff
 ------------------------------
 -- Виды расходов по отделам --
 ------------------------------
-INSERT INTO departments_expense_types
+INSERT INTO budgets
 (department_id, expense_type_id, datestamp, max_amount) VALUES
 (1, 1, '01.5.2023', 41400),
 (1, 2, '01.5.2023', 42400),

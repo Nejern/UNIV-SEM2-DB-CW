@@ -29,11 +29,11 @@ CREATE TABLE IF NOT EXISTS expense_types
 	,description TEXT
 );
 
-------------------------------
--- Виды расходов по отделам --
-------------------------------
-DROP TABLE IF EXISTS departments_expense_types CASCADE;
-CREATE TABLE IF NOT EXISTS departments_expense_types
+-------------
+-- Бюджеты --
+-------------
+DROP TABLE IF EXISTS budgets CASCADE;
+CREATE TABLE IF NOT EXISTS budgets
 (
 	department_id INT REFERENCES departments (id) NOT NULL
 	,expense_type_id INT REFERENCES expense_types (id) NOT NULL
