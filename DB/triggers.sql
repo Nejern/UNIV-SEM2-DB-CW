@@ -38,7 +38,7 @@ BEFORE INSERT OR UPDATE ON expenses
 FOR EACH ROW
 EXECUTE FUNCTION check_pay_trigger();
 
--- Изменение бюджетов
+-- Не позволяет изменять предыдущие бюджеты
 CREATE OR REPLACE FUNCTION check_budgets_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -57,7 +57,7 @@ BEFORE INSERT OR UPDATE ON budgets
 FOR EACH ROW
 EXECUTE FUNCTION check_budgets_trigger();
 
--- Изменение даты
+-- Не позволяет вносить изменения в datestamp, а также преобразует дату в дату с первым числом месяца
 CREATE OR REPLACE FUNCTION check_budgets_date_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
